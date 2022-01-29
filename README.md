@@ -1,5 +1,5 @@
-## Date-io adapter for date-fns-be
+## Date-io adapter for Buddhist Era
 
-This project is a part of [date-io monorepo](https://github.com/dmtrKovalenko/date-io) and contains the unified interface of date-fns.
+This project is a part of date-io foe buddhist era
 
-Get more information [here](https://github.com/dmtrKovalenko/date-io)
+Get more information [here](https://github.com/tarzui/date-fns-be)
