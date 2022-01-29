@@ -1,0 +1,49 @@
+{
+  "name": "@date-io/date-fns-be",
+  "version": "0.1.0",
+  "description": "Abstraction over common javascript date management libraries for buddhist era",
+  "main": "build/index.js",
+  "module": "build/index.esm.js",
+  "typings": "build/index.d.ts",
+  "scripts": {
+    "build": "rollup -c && tsc -p tsconfig.declaration.json"
+  },
+  "bugs": {
+    "url": "https://github.com/dmtrKovalenko/date-io/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dmtrKovalenko/date-io"
+  },
+  "keywords": [
+    "date",
+    "time",
+    "date-io",
+    "picker",
+    "date-fns",
+    "moment",
+    "luxon",
+    "buddhist era"
+  ],
+  "author": {
+    "name": "Chakri Thongtae",
+    "email": "chakri.psu@gmail.com"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "date-fns": "^2.0.0"
+  },
+  "peerDependenciesMeta": {
+    "date-fns": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@date-io/core": "^2.13.1"
+  },
+  "devDependencies": {
+    "date-fns": "2.16.1",
+    "rollup": "^2.0.2",
+    "typescript": "^3.7.2"
+  }
+}
