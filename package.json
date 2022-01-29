@@ -9,11 +9,11 @@
     "build": "rollup -c && tsc -p tsconfig.declaration.json"
   },
   "bugs": {
-    "url": "https://github.com/dmtrKovalenko/date-io/issues"
+    "url": "https://github.com/tarzui/date-fns-be/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dmtrKovalenko/date-io"
+    "url": "https://github.com/tarzui/date-fns-be"
   },
   "keywords": [
     "date",
@@ -23,7 +23,8 @@
     "date-fns",
     "moment",
     "luxon",
-    "buddhist era"
+    "buddhist era",
+    "date-io for buddhist era"
   ],
   "author": {
     "name": "Chakri Thongtae",
