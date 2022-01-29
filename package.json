@@ -1,5 +1,5 @@
 {
-  "name": "@date-io/date-fns-be",
+  "name": "@tarzui/date-fns-be",
   "version": "1.0.0",
   "description": "Abstraction over common javascript date management libraries for buddhist era",
   "main": "build/index.js",
