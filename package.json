@@ -30,7 +30,6 @@
     "name": "Chakri Thongtae",
     "email": "chakri.psu@gmail.com"
   },
-  "license": "MIT",
   "peerDependencies": {
     "date-fns": "^2.0.0"
   },
@@ -46,5 +45,6 @@
     "date-fns": "2.16.1",
     "rollup": "^2.0.2",
     "typescript": "^3.7.2"
-  }
+  },
+  "private": false
 }
