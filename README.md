@@ -6,8 +6,8 @@ Get more information [here](https://github.com/tarzui/date-fns-be)
 
 ## Examples
 
-[!(/assets/display.png)](/assets/display.png)
-[!(/assets/output.png)](/assets/output.png)
+[!(display as buddhist era)](/assets/display.png)
+[!(output value from date picker)](/assets/output.png)
 
 ## Install
 
