@@ -295,6 +295,18 @@ export default class DateFnsUtils implements IUtils<Date> {
         return dateFnsParse(value, formatString, new Date(), { locale: this.locale });
       }
     }
+
+    if (formatString === 'MM/yyyy' && value.length === 7) {
+      let year = parseInt(value.substring(3, 7));
+      if (year > 543) {
+        let newYear = year - 543;
+        let res = value.replace(`${year}`, `${newYear}`);
+        return dateFnsParse(res, formatString, new Date(), { locale: this.locale });
+      } else {
+        return dateFnsParse(value, formatString, new Date(), { locale: this.locale });
+      }
+    }
+
     return null;
     // return dateFnsParse(value, formatString, new Date(), { locale: this.locale });
   };

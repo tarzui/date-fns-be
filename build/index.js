@@ -304,6 +304,17 @@ var DateFnsUtils = /** @class */ (function () {
                     return dateFnsParse__default["default"](value, formatString, new Date(), { locale: _this.locale });
                 }
             }
+            if (formatString === 'MM/yyyy' && value.length === 7) {
+                var year = parseInt(value.substring(3, 7));
+                if (year > 543) {
+                    var newYear = year - 543;
+                    var res = value.replace("" + year, "" + newYear);
+                    return dateFnsParse__default["default"](res, formatString, new Date(), { locale: _this.locale });
+                }
+                else {
+                    return dateFnsParse__default["default"](value, formatString, new Date(), { locale: _this.locale });
+                }
+            }
             return null;
             // return dateFnsParse(value, formatString, new Date(), { locale: this.locale });
         };
