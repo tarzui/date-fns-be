@@ -1,6 +1,6 @@
 {
   "name": "@tarzui/date-fns-be",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Abstraction over common javascript date management libraries for buddhist era",
   "main": "build/index.js",
   "module": "build/index.esm.js",
@@ -29,9 +29,6 @@
     "name": "Chakri Thongtae",
     "email": "chakri.psu@gmail.com"
   },
-  "peerDependencies": {
-    "date-fns": "^2.0.0"
-  },
   "peerDependenciesMeta": {
     "date-fns": {
       "optional": true
@@ -41,7 +38,6 @@
     "@date-io/core": "^2.13.1"
   },
   "devDependencies": {
-    "date-fns": "2.16.1",
     "rollup": "^2.0.2",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-typescript": "^1.0.1",
