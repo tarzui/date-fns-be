@@ -222,6 +222,7 @@ var DateFnsUtils = /** @class */ (function () {
             return setYear(value, count);
         };
         this.date = function (value) {
+            //
             if (typeof value === 'undefined') {
                 return new Date();
             }
@@ -237,23 +238,37 @@ var DateFnsUtils = /** @class */ (function () {
             if (value === '') {
                 return null;
             }
-            return dateFnsParse(value, formatString, new Date(), { locale: _this.locale });
+            if ((formatString === 'dd/MM/yyyy' || formatString === 'P') && value.length === 10) {
+                var year = parseInt(value.substring(6, 10));
+                if (year > 543) {
+                    var newYear = year - 543;
+                    var res = value.replace("" + year, "" + newYear);
+                    return dateFnsParse(res, formatString, new Date(), { locale: _this.locale });
+                }
+                else {
+                    return dateFnsParse(value, formatString, new Date(), { locale: _this.locale });
+                }
+            }
+            return null;
+            // return dateFnsParse(value, formatString, new Date(), { locale: this.locale });
         };
-        // public toBuddhistYear(date: any, format: any) {
-        //   var christianYear = date.format('YYYY');
-        //   var buddhishYear = (parseInt(christianYear) + 543).toString();
-        //   return date
-        //     .format(format.replace('YYYY', buddhishYear).replace('YY', buddhishYear.substring(2, 4)))
-        //     .replace(christianYear, buddhishYear);
-        // }
         // public format = (date: Date, formatKey: keyof DateIOFormats) => {
         //   return this.toBuddhistYear(date, this.formats[formatKey]);
         // };
+        // public toBuddhistYear(date: Date, formatString: string) {
+        //   const christianYear = `${getYear(date)}`;
+        //   const buddhishYear = (parseInt(christianYear) + 543).toString();
+        //   let result = format(date, formatString, { locale: this.locale });
+        //   return result.replace(christianYear, buddhishYear);
+        // }
         this.format = function (date, formatKey) {
             return _this.formatByString(date, _this.formats[formatKey]);
         };
         this.formatByString = function (date, formatString) {
-            return format(addYears(date, 543), formatString, { locale: _this.locale });
+            var christianYear = "" + getYear(date);
+            var buddhishYear = (parseInt(christianYear) + 543).toString();
+            var result = format(date, formatString, { locale: _this.locale });
+            return result.replace(christianYear, buddhishYear);
         };
         this.isEqual = function (date, comparing) {
             if (date === null && comparing === null) {
@@ -343,7 +358,7 @@ var DateFnsUtils = /** @class */ (function () {
             }
             return nestedWeeks;
         };
-        this.getYearRangeFn = function (start, end) {
+        this.getYearRange = function (start, end) {
             var startDate = startOfYear(start);
             var endDate = endOfYear(end);
             var years = [];
@@ -352,14 +367,12 @@ var DateFnsUtils = /** @class */ (function () {
                 years.push(current);
                 current = addYears(current, 1);
             }
+            // return years.reverse();
             return years;
         };
         this.locale = locale;
         this.formats = Object.assign({}, defaultFormats, formats);
     }
-    DateFnsUtils.prototype.getYearRange = function (start, end) {
-        return this.getYearRangeFn(start, end).reverse();
-    };
     return DateFnsUtils;
 }());
 

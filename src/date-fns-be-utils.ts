@@ -264,6 +264,7 @@ export default class DateFnsUtils implements IUtils<Date> {
   };
 
   public date = (value?: any) => {
+    //
     if (typeof value === 'undefined') {
       return new Date();
     }
@@ -284,27 +285,44 @@ export default class DateFnsUtils implements IUtils<Date> {
       return null;
     }
 
-    return dateFnsParse(value, formatString, new Date(), { locale: this.locale });
+    if ((formatString === 'dd/MM/yyyy' || formatString === 'P') && value.length === 10) {
+      let year = parseInt(value.substring(6, 10));
+      if (year > 543) {
+        let newYear = year - 543;
+        let res = value.replace(`${year}`, `${newYear}`);
+        return dateFnsParse(res, formatString, new Date(), { locale: this.locale });
+      } else {
+        return dateFnsParse(value, formatString, new Date(), { locale: this.locale });
+      }
+    }
+    return null;
+    // return dateFnsParse(value, formatString, new Date(), { locale: this.locale });
   };
-
-  // public toBuddhistYear(date: any, format: any) {
-  //   var christianYear = date.format('YYYY');
-  //   var buddhishYear = (parseInt(christianYear) + 543).toString();
-  //   return date
-  //     .format(format.replace('YYYY', buddhishYear).replace('YY', buddhishYear.substring(2, 4)))
-  //     .replace(christianYear, buddhishYear);
-  // }
 
   // public format = (date: Date, formatKey: keyof DateIOFormats) => {
   //   return this.toBuddhistYear(date, this.formats[formatKey]);
   // };
+
+  // public toBuddhistYear(date: Date, formatString: string) {
+  //   const christianYear = `${getYear(date)}`;
+
+  //   const buddhishYear = (parseInt(christianYear) + 543).toString();
+
+  //   let result = format(date, formatString, { locale: this.locale });
+
+  //   return result.replace(christianYear, buddhishYear);
+  // }
 
   public format = (date: Date, formatKey: keyof DateIOFormats) => {
     return this.formatByString(date, this.formats[formatKey]);
   };
 
   public formatByString = (date: Date, formatString: string) => {
-    return format(addYears(date, 543), formatString, { locale: this.locale });
+    const christianYear = `${getYear(date)}`;
+    const buddhishYear = (parseInt(christianYear) + 543).toString();
+    let result = format(date, formatString, { locale: this.locale });
+
+    return result.replace(christianYear, buddhishYear);
   };
 
   public isEqual = (date: any, comparing: any) => {
@@ -420,7 +438,7 @@ export default class DateFnsUtils implements IUtils<Date> {
     return nestedWeeks;
   };
 
-  public getYearRangeFn = (start: Date, end: Date) => {
+  public getYearRange = (start: Date, end: Date) => {
     const startDate = startOfYear(start);
     const endDate = endOfYear(end);
     const years: Date[] = [];
@@ -431,9 +449,7 @@ export default class DateFnsUtils implements IUtils<Date> {
       current = addYears(current, 1);
     }
 
+    // return years.reverse();
     return years;
   };
-  public getYearRange(start: Date, end: Date) {
-    return this.getYearRangeFn(start, end).reverse();
-  }
 }
