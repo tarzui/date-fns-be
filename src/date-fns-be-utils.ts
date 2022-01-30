@@ -49,6 +49,7 @@ import { IUtils, DateIOFormats, Unit } from '@date-io/core/IUtils';
 import isWithinInterval from 'date-fns/isWithinInterval';
 import longFormatters from 'date-fns/_lib/format/longFormatters';
 import defaultLocale from 'date-fns/locale/en-US';
+// import moment from 'moment';
 
 type Locale = typeof defaultLocale;
 
@@ -131,7 +132,7 @@ export default class DateFnsUtils implements IUtils<Date> {
   };
 
   public getCurrentLocaleCode = () => {
-    return this.locale?.code || 'en-US';
+    return this.locale?.code || 'th-Th';
   };
 
   public addSeconds = (value: Date, count: number) => {
@@ -286,12 +287,24 @@ export default class DateFnsUtils implements IUtils<Date> {
     return dateFnsParse(value, formatString, new Date(), { locale: this.locale });
   };
 
+  // public toBuddhistYear(date: any, format: any) {
+  //   var christianYear = date.format('YYYY');
+  //   var buddhishYear = (parseInt(christianYear) + 543).toString();
+  //   return date
+  //     .format(format.replace('YYYY', buddhishYear).replace('YY', buddhishYear.substring(2, 4)))
+  //     .replace(christianYear, buddhishYear);
+  // }
+
+  // public format = (date: Date, formatKey: keyof DateIOFormats) => {
+  //   return this.toBuddhistYear(date, this.formats[formatKey]);
+  // };
+
   public format = (date: Date, formatKey: keyof DateIOFormats) => {
     return this.formatByString(date, this.formats[formatKey]);
   };
 
   public formatByString = (date: Date, formatString: string) => {
-    return format(date, formatString, { locale: this.locale });
+    return format(addYears(date, 543), formatString, { locale: this.locale });
   };
 
   public isEqual = (date: any, comparing: any) => {
@@ -407,7 +420,7 @@ export default class DateFnsUtils implements IUtils<Date> {
     return nestedWeeks;
   };
 
-  public getYearRange = (start: Date, end: Date) => {
+  public getYearRangeFn = (start: Date, end: Date) => {
     const startDate = startOfYear(start);
     const endDate = endOfYear(end);
     const years: Date[] = [];
@@ -420,4 +433,7 @@ export default class DateFnsUtils implements IUtils<Date> {
 
     return years;
   };
+  public getYearRange(start: Date, end: Date) {
+    return this.getYearRangeFn(start, end).reverse();
+  }
 }

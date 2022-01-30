@@ -173,7 +173,7 @@ var DateFnsUtils = /** @class */ (function () {
         };
         this.getCurrentLocaleCode = function () {
             var _a;
-            return ((_a = _this.locale) === null || _a === void 0 ? void 0 : _a.code) || 'en-US';
+            return ((_a = _this.locale) === null || _a === void 0 ? void 0 : _a.code) || 'th-Th';
         };
         this.addSeconds = function (value, count) {
             return addSeconds__default["default"](value, count);
@@ -294,11 +294,21 @@ var DateFnsUtils = /** @class */ (function () {
             }
             return dateFnsParse__default["default"](value, formatString, new Date(), { locale: _this.locale });
         };
+        // public toBuddhistYear(date: any, format: any) {
+        //   var christianYear = date.format('YYYY');
+        //   var buddhishYear = (parseInt(christianYear) + 543).toString();
+        //   return date
+        //     .format(format.replace('YYYY', buddhishYear).replace('YY', buddhishYear.substring(2, 4)))
+        //     .replace(christianYear, buddhishYear);
+        // }
+        // public format = (date: Date, formatKey: keyof DateIOFormats) => {
+        //   return this.toBuddhistYear(date, this.formats[formatKey]);
+        // };
         this.format = function (date, formatKey) {
             return _this.formatByString(date, _this.formats[formatKey]);
         };
         this.formatByString = function (date, formatString) {
-            return format__default["default"](date, formatString, { locale: _this.locale });
+            return format__default["default"](addYears__default["default"](date, 543), formatString, { locale: _this.locale });
         };
         this.isEqual = function (date, comparing) {
             if (date === null && comparing === null) {
@@ -388,7 +398,7 @@ var DateFnsUtils = /** @class */ (function () {
             }
             return nestedWeeks;
         };
-        this.getYearRange = function (start, end) {
+        this.getYearRangeFn = function (start, end) {
             var startDate = startOfYear__default["default"](start);
             var endDate = endOfYear__default["default"](end);
             var years = [];
@@ -402,6 +412,9 @@ var DateFnsUtils = /** @class */ (function () {
         this.locale = locale;
         this.formats = Object.assign({}, defaultFormats, formats);
     }
+    DateFnsUtils.prototype.getYearRange = function (start, end) {
+        return this.getYearRangeFn(start, end).reverse();
+    };
     return DateFnsUtils;
 }());
 
