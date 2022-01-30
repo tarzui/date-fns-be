@@ -6,8 +6,8 @@ Get more information [here](https://github.com/tarzui/date-fns-be)
 
 ## Examples
 
-[!(demo/display.png)]
-[!(demo/output.png)]
+[!(demo/display.png)](/demo/display.png)
+[!(demo/output.png)](/demo/output.png)
 
 ## Install
 
