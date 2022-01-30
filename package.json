@@ -21,9 +21,8 @@
     "date-io",
     "picker",
     "date-fns",
-    "moment",
-    "luxon",
-    "buddhist era",
+    "date-fns-be",
+    "date picker for buddhist era",
     "date-io for buddhist era"
   ],
   "author": {
