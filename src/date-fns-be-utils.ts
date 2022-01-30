@@ -306,24 +306,23 @@ export default class DateFnsUtils implements IUtils<Date> {
         return dateFnsParse(value, formatString, new Date(), { locale: this.locale });
       }
     }
+    if (formatString === 'yyyy' && value.length === 4) {
+      let year = parseInt(value);
+      if (year > 543) {
+        let newYear = year - 543;
+        let res = value.replace(`${year}`, `${newYear}`);
+        return dateFnsParse(res, formatString, new Date(), { locale: this.locale });
+      } else {
+        return dateFnsParse(value, formatString, new Date(), { locale: this.locale });
+      }
+    }
+    if (formatString === 'MM' && value.length === 2) {
+      return dateFnsParse(value, formatString, new Date(), { locale: this.locale });
+    }
 
     return null;
     // return dateFnsParse(value, formatString, new Date(), { locale: this.locale });
   };
-
-  // public format = (date: Date, formatKey: keyof DateIOFormats) => {
-  //   return this.toBuddhistYear(date, this.formats[formatKey]);
-  // };
-
-  // public toBuddhistYear(date: Date, formatString: string) {
-  //   const christianYear = `${getYear(date)}`;
-
-  //   const buddhishYear = (parseInt(christianYear) + 543).toString();
-
-  //   let result = format(date, formatString, { locale: this.locale });
-
-  //   return result.replace(christianYear, buddhishYear);
-  // }
 
   public format = (date: Date, formatKey: keyof DateIOFormats) => {
     return this.formatByString(date, this.formats[formatKey]);
@@ -461,7 +460,6 @@ export default class DateFnsUtils implements IUtils<Date> {
       current = addYears(current, 1);
     }
 
-    // return years.reverse();
     return years;
   };
 }

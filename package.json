@@ -1,6 +1,6 @@
 {
   "name": "@tarzui/date-fns-be",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Abstraction over common javascript date management libraries for buddhist era",
   "main": "build/index.js",
   "module": "build/index.esm.js",
@@ -47,5 +47,6 @@
     "rollup-plugin-typescript": "^1.0.1",
     "typescript": "^3.7.2"
   },
-  "private": false
+  "private": false,
+  "license": "MIT"
 }
