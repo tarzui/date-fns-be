@@ -17,7 +17,7 @@ or
 
 `yarn add @tarzui/date-fns-be`
 
-### Usage example with @mui DatePicker
+## Usage example with @mui DatePicker
 
 ```js
 import { useState } from 'react';
