@@ -222,6 +222,12 @@ var DateFnsUtils = /** @class */ (function () {
         this.setYear = function (value, count) {
             return setYear_1["default"](value, count);
         };
+        this.startOfYear = function (value) {
+            return startOfYear_1["default"](value);
+        };
+        this.endOfYear = function (value) {
+            return endOfYear_1["default"](value);
+        };
         this.date = function (value) {
             //
             if (typeof value === 'undefined') {
