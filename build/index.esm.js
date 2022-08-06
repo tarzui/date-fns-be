@@ -215,6 +215,12 @@ var DateFnsUtils = /** @class */ (function () {
         this.endOfWeek = function (value) {
             return endOfWeek(value, { locale: _this.locale });
         };
+        this.startOfYear = function (value) {
+            return startOfYear(value);
+        };
+        this.endOfYear = function (value) {
+            return endOfYear(value);
+        };
         this.getYear = function (value) {
             return getYear(value);
         };

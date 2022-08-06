@@ -39,6 +39,8 @@ export default class DateFnsUtils implements IUtils<Date> {
     endOfMonth: (value: Date) => Date;
     startOfWeek: (value: Date) => Date;
     endOfWeek: (value: Date) => Date;
+    startOfYear: (value: Date) => Date;
+    endOfYear: (value: Date) => Date;
     getYear: (value: Date) => number;
     setYear: (value: Date, count: number) => Date;
     date: (value?: any) => Date;

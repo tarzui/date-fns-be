@@ -270,6 +270,12 @@ var DateFnsUtils = /** @class */ (function () {
         this.endOfWeek = function (value) {
             return endOfWeek__default["default"](value, { locale: _this.locale });
         };
+        this.startOfYear = function (value) {
+            return startOfYear__default["default"](value);
+        };
+        this.endOfYear = function (value) {
+            return endOfYear__default["default"](value);
+        };
         this.getYear = function (value) {
             return getYear__default["default"](value);
         };

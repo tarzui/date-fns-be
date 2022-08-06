@@ -255,6 +255,14 @@ export default class DateFnsUtils implements IUtils<Date> {
     return endOfWeek(value, { locale: this.locale });
   };
 
+  public startOfYear = (value: Date) => {
+    return startOfYear(value);
+  };
+
+  public endOfYear = (value: Date) => {
+    return endOfYear(value);
+  };
+
   public getYear = (value: Date) => {
     return getYear(value);
   };
